@@ -1,47 +1,45 @@
-#include <python2.7/Python.h>
-#include <stdio.h>
-#include <stdint.h>
-
-static const char module_docstring[] =
-        "Init proxy";
-
-static char initProxy_docstring[] =
-        "returns a function pointer";
+#include <python3.4m/Python.h> // python stuff
+#include <QtWidgets/QWidget> // widgets
 
 
-typedef int (*pInit)(int, char** argv);
 
-static pInit fun;
+static char module_doc_string[] =
+        "This module returns a simple QWidget";
 
-static PyObject* initProxy(PyObject* self, PyObject* args)
-{   (void) self; (void) args;
-    return  Py_BuildValue("o&", fun);
+static QWidget* __getwidget()
+{
+
+    QWidget* w = new QWidget();
+    return  w;
 }
 
-/* describe a module containing the interfaces,
- * function pointer and a  doc string, some explaination
- * about the function (document)
- * */
+
+typedef QWidget* (*fn)(void);
+static fn f = &__getwidget;
+
+
+static PyObject* getWidget(PyObject* self, PyObject* args)
+{
+    (void) args;
+    QWidget* w = new QWidget();
+    w->setMinimumSize(200, 200);
+    PyObject* ret = Py_BuildValue("o&", f); // returns the callable thing from C
+    return ret;
+}
+
 
 static PyMethodDef module_methods[] =
+    {
+        {"getWidget", getWidget, METH_VARARGS, module_doc_string},
+        {NULL, NULL, 0, NULL}
+    };
+
+
+
+PyMODINIT_FUNC init_simplemodule(void)
 {
-    {"initProxy", initProxy, METH_VARARGS, initProxy_docstring}
-};
+    PyObject *m = Py_InitModule3("_simplemodule", module_methods, module_doc_string);
+    if (m == NULL)
+        return;
 
-
-
-
-PyMODINIT_FUNC initlibsimplemodule(void)
-{
-    Py_InitModule("libsimplemodule", module_methods);
-}
-
-
-int main(int argc, char** argv)
-{
-    (void) argc;
-    Py_SetProgramName(argv[0]);
-    Py_Initialize();
-    initlibsimplemodule();
-    return 0;
 }

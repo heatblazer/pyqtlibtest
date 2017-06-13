@@ -1,16 +1,19 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#define MY_EXPORT
+#define INTERFACE
+
+struct QWidget;
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-int  init(int argc, char** argv);
+char *get_widget();
 
 #ifdef __cplusplus
-};
+}
 #endif
+
 
 #endif // INTERFACE_H

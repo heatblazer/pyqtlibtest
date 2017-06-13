@@ -1,4 +1,3 @@
 #put this file to libsimplemodule.so location
-import libsimplemodule
-
-print(libsimplemodule.endianSwap16(1))
+import simplemodule
+print(simplemodule.endianSwap16(1))

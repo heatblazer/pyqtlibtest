@@ -1,11 +1,14 @@
 #include "interface.h"
 #include "testwidget.h"
-#include <QApplication>
+#include <iostream>
+#include <QtWidgets/qwidget.h>
 
-extern "C" MY_EXPORT int init(int argc, char **argv)
+
+extern "C" INTERFACE char* get_widget()
 {
-    QApplication a(argc, argv);
-    MyWidget w;
-    w.init();
-    a.exec();
+    static char c[sizeof (QWidget)] = {0};
+    QWidget* w = new QWidget();
+    w->setMinimumSize(200, 200);
+    memcpy(c, w, sizeof(QWidget));
+    return  c;
 }
