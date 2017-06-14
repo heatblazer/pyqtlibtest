@@ -1,16 +1,15 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-06-13T10:50:23
+# Project created by QtCreator 2017-06-13T14:52:03
 #
 #-------------------------------------------------
 
-QT       += widgets uiplugin
+QT       += core gui
 
-TARGET = pyqt
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = test
 TEMPLATE = lib
-
-
-DEFINES += PYQT_LIBRARY
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -23,12 +22,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += pyqt.cpp
 
-HEADERS += pyqt.h\
-        pyqt_global.h
+SOURCES += \
+    test.cpp
 
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
+HEADERS  += \
+    test.h
+
+FORMS    +=
+
+DESTDIR += /usr/lib
+DESTDIR += /usr/lib64

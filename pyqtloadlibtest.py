@@ -34,11 +34,13 @@ def main(*args, **kwargs):
             print("FAIL")
     else:
         ploader = QtCore.QPluginLoader(LIB)
-        plugin = QtCore.QObject(ploader.instance())
+        plugin = ploader.instance()
         print(ploader)
         if plugin is not None:
             print("Plugin loaded OK")
             print(plugin)
+            w = cast(plugin, QtWidgets.QWidget)
+            w.show()
 
         else:
             print("Plugin failed")

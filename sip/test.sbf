@@ -1,0 +1,3 @@
+target = test
+sources = siptestcmodule.cpp siptestTest.cpp
+headers = sipAPItest.h
