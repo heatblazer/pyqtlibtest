@@ -1,0 +1,3 @@
+target = PyMyLabel
+sources = sipPyMyLabelcmodule.cpp sipPyMyLabelMyLabel.cpp
+headers = sipAPIPyMyLabel.h

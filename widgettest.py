@@ -1,5 +1,6 @@
 from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QTimer, QObject
+from PyQt5.Qt import *
 import sys
 import test
 
