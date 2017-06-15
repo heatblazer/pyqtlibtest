@@ -1,0 +1,12 @@
+#ifndef PLUGINTEST_GLOBAL_H
+#define PLUGINTEST_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(PLUGINTEST_LIBRARY)
+#  define PLUGINTESTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define PLUGINTESTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // PLUGINTEST_GLOBAL_H
