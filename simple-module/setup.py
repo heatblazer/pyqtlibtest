@@ -1,7 +1,13 @@
 from distutils.core import setup, Extension
+from distutils import sysconfig
 
-extension_mod1 = Extension("endianSwap32", ["py_endianSwap32", "_simple-module.c"])
+extension_mod1 = Extension(
+    "endianSwap32", sources = ["simplemodule.c"],
+    language='c')
 
-setup(name="endianSwap", ext_modules=[extension_mod1])
+setup(name="endianSwap", 
+    version='1.0',
+    description = 'simple C code package',
+    ext_modules=[extension_mod1])
 
 
